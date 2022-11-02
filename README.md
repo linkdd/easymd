@@ -62,7 +62,7 @@ If you have the following structure:
 And run the command:
 
 ```
-$ easymd -h 127.0.0.1 -p 8000 -r ./docs/
+$ easymd -b 127.0.0.1 -p 8000 -r ./docs/
 ```
 
 The following URLs will be available:
