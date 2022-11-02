@@ -34,29 +34,33 @@ func Serve(rootDocument string, host net.IP, port int) {
 			}
 		}
 
-		page := document.Page{
-			Params: document.PageParams{
-				Title: "Not Found",
-				Lang:  "en",
-				Meta:  []document.MetaTag{},
-				CSS:   []string{},
-				JS:    []string{},
-			},
-			Content: fmt.Sprintf(
-				`
-					<div class="message is-danger m-5">
-						<div class="message-header"><p>Not Found</p></div>
-						<div class="message-body">%s</div>
-					</div>
-				`,
-				r.URL.Path,
-			),
-		}
+		if path, found := hasStaticFile(rootDocument, r.URL.Path); found {
+			http.ServeFile(w, r, path)
+		} else {
+			page := document.Page{
+				Params: document.PageParams{
+					Title: "Not Found",
+					Lang:  "en",
+					Meta:  []document.MetaTag{},
+					CSS:   []string{},
+					JS:    []string{},
+				},
+				Content: fmt.Sprintf(
+					`
+						<div class="message is-danger m-5">
+							<div class="message-header"><p>Not Found</p></div>
+							<div class="message-body">%s</div>
+						</div>
+					`,
+					r.URL.Path,
+				),
+			}
 
-		w.WriteHeader(http.StatusNotFound)
-		err := page.Render(w)
-		if err != nil {
-			log.Println("ERROR: ", err)
+			w.WriteHeader(http.StatusNotFound)
+			err := page.Render(w)
+			if err != nil {
+				log.Println("ERROR: ", err)
+			}
 		}
 	})
 

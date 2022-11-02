@@ -25,6 +25,14 @@ js:
 ---
 ```
 
+## Build
+
+Simply run:
+
+```
+$ go build
+```
+
 ## Usage
 
 ```
@@ -46,6 +54,7 @@ If you have the following structure:
 |-+ docs/
   |-- _index.md
   |-- hello.md
+  |-- image.png
   |-+ foo/
     |-- bar.md
 ```
@@ -59,6 +68,7 @@ $ easymd -h 127.0.0.1 -p 8000 -r ./docs/
 The following URLs will be available:
 
  - http://127.0.0.1:8000/
+ - http://127.0.0.1:8000/image.png
  - http://127.0.0.1:8000/hello/
  - http://127.0.0.1:8000/hello
  - http://127.0.0.1:8000/foo/bar/
