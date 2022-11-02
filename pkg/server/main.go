@@ -65,6 +65,6 @@ func Serve(rootDocument string, host net.IP, port int) {
 	})
 
 	address := net.JoinHostPort(host.String(), strconv.Itoa(port))
-	log.Println("Listening on http://", address)
+	log.Println(fmt.Sprintf("Listening on http://%s", address))
 	log.Fatal(http.ListenAndServe(address, nil))
 }
