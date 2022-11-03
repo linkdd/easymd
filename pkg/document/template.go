@@ -17,7 +17,6 @@ const layout = `
 			<meta {{ .Attribute }}="{{ .Value }}" />
 		{{ end }}
 
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
 		{{ range .Params.CSS }}
 			<link rel="stylesheet" href="{{ . }}" />
 		{{ end }}
